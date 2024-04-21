@@ -2,19 +2,21 @@
 import java.util.*;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+/*
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import javax.management.timer.TimerMBean;
 //*/
-//import java.awt.*;
+import java.awt.*;
 import javax.swing.*;
-//import javax.xml.crypto.Data;
 
 //*/
 
@@ -46,11 +48,75 @@ public class Owtt {
         frame1.setVisible(true);//設定表單可見
     }
     
-    public class GamePanel extends JPanel implements KeyListener , ActionListener{
+    public class GamePanel extends JPanel implements KeyListener , ActionListener {
 
         public static int[] snake_x = new int[50];
         public static int[] snake_y = new int[50];
+        int food_x;//食物橫座標
+        int food_y;//食物縱座標
+        int snake_leng;//貪吃蛇的長度
+        String head_direct;//蛇頭方向
+        int score;//積分
+        Random rand = new Random();
+        Timer timer = new Timer();
+        boolean start;
+        boolean fail;
         
+        public GamePanel(){
+            init();
+            this.setFocusable(true);
+            this.addKeyListener(this);
+            //timer.start();
+        }
+
+        //小蛇初始位置
+        public void init(){
+            snake_leng = 3;
+            snake_x[0] = 100;
+            snake_y[0] = 100;
+            snake_x[1] = 75;
+            snake_y[1] = 100;
+            snake_x[2] = 50;
+            snake_y[2] = 100;
+            head_direct = "R" ;
+            Eat( food_x ,food_y );
+            start = false;
+            fail = false;
+            score = 0;    
+        }
+
+        //食物位置隨機
+        public void Eat( int x , int y ){
+            x = 25 + 25 * rand.nextInt(34);
+            y = 75 + 25 * rand.nextInt(24);
+            for ( int i = 0; i < snake_leng ; i++ ) 
+            {
+                if( snake_x[i] == x && snake_y[i] == y )
+                {
+                    x = 25 + 25 * rand.nextInt(34);
+                    y = 75 + 25 * rand.nextInt(24);
+                }
+            }
+            food_x = x;
+            food_y = y;
+        }
+
+        //介面繪製
+        public void PaintStruct( Graphics g )
+        {
+            super.paintComponent( g );
+            this.setBackground( Color.white );//設定背景板為白色
+
+            //畫標題
+            g.setColor( Color.GREEN );
+            g.setFont( new Font("幼圓",Font.BOLD,50 ) );
+            g.drawString("貪吃蛇",300,60);
+
+            //繪製遊戲區域
+            g.setColor(Color.GRAY);
+            g.fillRect(25,75,850,600);
+            
+        }
         
         
         
