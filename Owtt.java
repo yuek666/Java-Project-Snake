@@ -138,8 +138,18 @@ public class Owtt {
             //畫身體
             for ( int i = 0 ; i < snake_leng ; i ++ )
             {
-                Data
+                Data.body.paintIcon( this , g , snake_x[i] ,snake_y[i] );
             }
+            //畫食物
+            Data.food.paintIcon( this , g , food_x , food_y );
+
+            //畫積分🧺
+            g.setColoe( Color.BLACK );
+            g.setFont( new Font( "test1" , Fon.BOLD , 20 ) );
+            s.drawString( "分數" , score , 730 , 60 );
+
+
+            
                     
         }
         
