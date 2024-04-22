@@ -116,7 +116,31 @@ public class Owtt {
             //繪製遊戲區域
             g.setColor(Color.GRAY);
             g.fillRect(25,75,850,600);
-            
+
+            //畫貪食蛇頭部
+            if ( head_direct == "R" )
+            {
+                Data.right.paintIcon( this , g , snake_x[0] , snake_y[0] );
+            }
+            else if ( head_direct == "L" )
+            {
+                Data.left.paintIcon( this , g , snake_x[0] , snake_y[0] );
+            }
+            if ( head_direct == "U" )
+            {
+                Data.up.paintIcon( this , g , snake_x[0] , snake_y[0] );
+            }
+            else if ( head_diret == "D" )
+            {
+                Data.down.paintIcon( this , g , snake_x[0] , snake_y[0] );
+            }
+
+            //畫身體
+            for ( int i = 0 ; i < snake_leng ; i ++ )
+            {
+                Data
+            }
+                    
         }
         
         
