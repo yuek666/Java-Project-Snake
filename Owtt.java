@@ -86,7 +86,8 @@ public class Owtt {
         }
 
         //食物位置隨機
-        public void Eat( int x , int y ){
+        public void Eat( int x , int y )
+        {
             x = 25 + 25 * rand.nextInt(34);
             y = 75 + 25 * rand.nextInt(24);
             for ( int i = 0; i < snake_leng ; i++ ) 
