@@ -1,0 +1,2 @@
+(Graphic) g.setFont(new Font("字",Font.BOLD,40)); 設字體 (粗體)
+(Graphic) g.grawRect( 起始 x 座標，起始 y 座標， 寬， 高。 )
