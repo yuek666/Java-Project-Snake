@@ -99,8 +99,5 @@ class Load
 	{
 		return highest_score;
 	}
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> 51273acc48e4102188ed70e31d40381c6da069b1
