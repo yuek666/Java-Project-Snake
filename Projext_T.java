@@ -19,11 +19,13 @@ import javax.swing.*;
 
 */
 import java.io.PrintWriter;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
 //import javax.swing.JPanel;
 
+// == 主程式
 public class Projext_T extends JFrame{
     //private static GamePanel game_panel = new GamePanel(); //創建遊戲面板
 	public static void main(String[] args) throws IOException, Exception {
@@ -40,9 +42,9 @@ public class Projext_T extends JFrame{
 /*
 class GamePanel extends JPanel implements Runnable
 {
-    public static final int per_unit_length = 20;//單位長度
-	public static final int MULTIPLE = 5;//倍數
-	public static final int HALF_SIDE = MULTIPLE * per_unit_length;//遊戲邊框的一半長 = 倍數 * 單位長度
+    public static final int Per_Unit_Length = 20;//單位長度
+	public static final int Multiples_Time = 5;//倍數
+	public static final int Half_Side = Multiples_Time * Per_Unit_Length;//遊戲邊框的一半長 = 倍數 * 單位長度
         
     private boolean initialize = true;//判斷是否需要初始化
 	private boolean start = false;//判斷是否開始
@@ -52,15 +54,103 @@ class GamePanel extends JPanel implements Runnable
 	private static int score = 0;//分數
 	private static int information = 0;//傳遞遊戲信息
 }
-
-class Snake
-{
-    
-}
 */
 
+// == 蛇類 ==
+class Snake
+{
+    public static final int Direction_Up = 1;
+	public static final int Direction_Down = 2;
+	public static final int Direction_Left = 3;
+	public static final int Direction_Right = 4;
+	public static final int SPEED_1 = 300;
+	public static final int SPEED_2 = 200;
+	public static final int SPEED_3 = 150;
+	public static final int SPEED_4 = 100;
+	public static final int SPEED_5 = 30;
+	private int direction = Direction_Right;
+	private int speed = SPEED_3;
+	private Dot head = new Dot();
+	private LinkedList<Dot> body = new LinkedList<Dot>();
 
-// =分數導入/導出=
+	public Snake()
+	{
+	}
+
+	public Dot GetHead()
+	{
+		return head;
+	}
+
+	public LinkedList<Dot> GetBody()
+	{
+		return body;
+	}
+
+	public int GetDirection(){
+		return direction;
+	}
+
+	public int GetSpeed(){
+		return speed;
+	}
+
+	public void GetBody( LinkedList<Dot> body )
+	{
+		this.body = body;
+	}
+
+	public void setDirection( int direction )
+	{
+		this.direction = direction;
+	}
+
+	public void setSpeed( int speed )
+	{
+		this.speed = speed;
+	}
+}
+
+
+
+// == 點類 ==
+class Dot
+{
+	private int x = 0;
+	private int y = 0;
+
+	public Dot()
+	{
+	}
+
+	public Dot( int x, int y )
+	{
+		this.x = x;
+		this.y = y;
+	}
+
+	public int GetX()
+	{
+		return x;
+	}
+
+	public int GetY()
+	{
+		return y;
+	}
+
+	public void SetX( int x )
+	{
+		this.x = x;
+	}
+
+	public void SetY( int y )
+	{
+		this.y = y;
+	}
+}
+
+// == 分數導入/導出 ==
 class Load 
 {
 	public static int[] highest_score = new int[5];	
@@ -81,7 +171,9 @@ class Load
         {
             score_load_t = score_load_t + load_data.next() + "\n" ;
         }     
+
 		String[] score_load_t2 = score_load_t.split( " |\n" );
+		
 		for ( int i = 0 ; i < 5 ; i ++ )
 		{
 			highest_score[i] = Integer.parseInt(score_load_t2[i]);
