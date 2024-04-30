@@ -39,7 +39,7 @@ public class Projext_T extends JFrame{
 
 }
 
-/*
+
 class GamePanel extends JPanel implements Runnable
 {
     public static final int Per_Unit_Length = 20;//單位長度
@@ -53,8 +53,34 @@ class GamePanel extends JPanel implements Runnable
     private static int eat_amount = 0;//吃的個數
 	private static int score = 0;//分數
 	private static int information = 0;//傳遞遊戲信息
+
+	private Snake snake = new Snake();//蛇
+	private Dot dot = new Dot();//點心
+
+	protected void PaintComponent( Graphics g )
+	{
+		super.paintComponent( g );
+
+		int x_centre = GetWisth() / 2;
+		int y_centre = GetHeight() / 2;
+
+		int x_random;
+		int y_random;
+
+		if ( initialize )
+		{
+			initilaze = false;
+
+			//遊戲邊筐
+			g.grawRect( x_centre - Half_Side , y_ccentre - Half_Side  , Hide_Side * 2 , Half_Side * 2);
+
+			//蛇頭
+			snake.GetHead
+		}
+		
+	}
 }
-*/
+
 
 // == 蛇類 ==
 class Snake
@@ -95,17 +121,17 @@ class Snake
 		return speed;
 	}
 
-	public void GetBody( LinkedList<Dot> body )
+	public void SetBody( LinkedList<Dot> body )
 	{
 		this.body = body;
 	}
 
-	public void setDirection( int direction )
+	public void SetDirection( int direction )
 	{
 		this.direction = direction;
 	}
 
-	public void setSpeed( int speed )
+	public void SetSpeed( int speed )
 	{
 		this.speed = speed;
 	}
