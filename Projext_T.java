@@ -55,7 +55,7 @@ class GamePanel extends JPanel implements Runnable
 	private static int information = 0;//傳遞遊戲信息
 
 	private Snake snake = new Snake();//蛇
-	private Dot dot = new Dot();//點心
+	private Dot target = new Dot();//目標
 
 	protected void PaintComponent( Graphics g )
 	{
@@ -75,7 +75,24 @@ class GamePanel extends JPanel implements Runnable
 			g.grawRect( x_centre - Half_Side , y_ccentre - Half_Side  , Hide_Side * 2 , Half_Side * 2);
 
 			//蛇頭
-			snake.GetHead
+			snake.GetHead.SetX( x_centre );
+			snake.GetHead.SetY( y_centre );		
+			g.setColor( Color.ORANGE );
+			g.fillOval( snake.GetHead().GetX() , snake.GetHead().GetY() , Per_Unit_Length , Per_Unit_Length );
+
+			//標的
+			do
+			{
+				x_random = x_centre - Half_Side + ( (int)( Math.random() * Multiple * 2 ) ) * Per_Unit_Length;
+				y_random = y_centre - Half_Side + ( (int)( Math.random() * Multiple * 2 ) ) * Per_Unit_Length;
+			} while ( x_random == snake.GetHead() && y == snake.GetHead() ) //重疊時
+
+			//畫舌頭
+			g.setColor( Color.ORANGE );
+			g.fillOval( snake.GetHead().GetX() , snake
+
+				
+					
 		}
 		
 	}
