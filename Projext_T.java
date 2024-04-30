@@ -96,6 +96,30 @@ class GamePanel extends JPanel implements Runnable
 		}
 		
 	}
+	public GamePanel(){
+			//配置面膽屬性
+			setFocusable(true);
+			setFont(new Font("Californian FB",Font.Bold,80));//字體，顏色要更改
+	
+			//註冊鍵盤監聽器
+			addKeyListener(new KeyAdapter(){
+				public void keyPressed(KeyEvent e){
+					int direction = snake.getDirection();
+					switch(e.getKeyCode()){
+						case Keyevent.VK_UP:
+							if(isStarted && !isPaused && !isCrushed()){
+								if(direction != Snake.Direction_Up && direction != Snake.DIRECTION_DOWN){
+									snake.setDirection(Snake.DIRECTION_UP);
+									changeSnakeLocation();
+								}
+							}
+							break;
+						case Keyevent.VK_DOWN:
+							
+					}
+				
+				}
+			}
 }
 
 
@@ -236,3 +260,11 @@ class Load
 	}
 
 }
+
+
+	
+		
+		
+	}
+
+
